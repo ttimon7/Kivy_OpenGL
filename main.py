@@ -343,7 +343,7 @@ class MyApp( App ):
     path = os.path.abspath( os.path.dirname( "." ) )
 
     def build( self ):
-        self.title = "Simple Movie Archive"
+        self.title = "MyApp"
         self.icon = str( os.path.join( self.path, "icons", "icon.png" ) )
 
         # Setting the window's size
