@@ -1,0 +1,99 @@
+#:kivy 1.9.0
+#:import Label kivy.uix.label
+#:import ScrollView kivy.uix.scrollview
+#:import Window kivy.core.window
+#:import Window kivy.core.window
+#:import FloatLayout kivy.uix.floatlayout
+
+# Don't forget lower left corner is the refference!
+
+RootWidget:
+    id: root_widget
+    orientation: "horizontal"
+    padding: 5
+    spacing: 5
+
+    menu: menu # An ObjectProperty
+    opengl_widget_rc: opengl_widget_rc
+    opengl_widget: opengl_widget
+
+    canvas.before:
+        Color:
+            rgb: .5, .5, .5
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    StackLayout:
+        id: menu
+        size_hint: .2, 1.
+        spacing: 3
+
+        canvas.before:
+            Color:
+                rgb: .15, .15, .15
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Label:
+            size_hint: 1., None # Must be set to None before the size can be set
+            height: 30
+            markup: True
+            text: "[color=#ffffff]Item 1[/color]"
+            canvas.before:
+                Color:
+                    rgb: .6, .0, .0
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+        Label:
+            size_hint: 1., None # Must be set to None before the size can be set
+            height: 30
+            markup: True
+            text: "[color=#ffffff]Item 2[/color]"
+            canvas.before:
+                Color:
+                    rgb: .6, .0, .0
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+    RelativeLayout:
+        id: ogl_container1
+        size_hint: .39, 1
+        pos_hint: { "x": 0 }
+
+        canvas.before:
+            Color:
+                rgb: .2, .2, .2
+            Rectangle:
+                size: self.size
+                pos: 0, 0
+
+        OpenGLWidgetRC:
+            id: opengl_widget_rc
+            # size_hint: None, None
+            width: ( ogl_container1.height if ogl_container1.height < ogl_container1.width else ogl_container1.width ) -10
+            height: ( ogl_container1.height if ogl_container1.height < ogl_container1.width else ogl_container1.width ) -10
+            pos_hint: {'center_x': .5, 'center_y': .5}
+
+    RelativeLayout:
+        id: ogl_container2
+        size_hint: .39, 1
+        pos_hint: { "x": 0 }
+
+        canvas.before:
+            Color:
+                rgb: .3, .3, .3
+            Rectangle:
+                size: self.size
+                pos: 0, 0
+
+        OpenGLWidget:
+            id: opengl_widget
+            # size_hint: None, None
+            width: ( ogl_container2.height if ogl_container2.height < ogl_container2.width else ogl_container2.width ) -10
+            height: ( ogl_container2.height if ogl_container2.height < ogl_container2.width else ogl_container2.width ) -10
+            pos_hint: {'center_x': .5, 'center_y': .5}
